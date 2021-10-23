@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lab.dao.NewsDao">
+
+    <select id="selectAllNews" resultType="News">
+        select * from news
+    </select>
+
+    <insert id="addNews" parameterType="News">
+        insert into news (date,title,content) values (#{date},#{title},#{content})
+    </insert>
+
+    <select id="searchTitle" parameterType="String" resultType="String">
+        select title from news where title like #{key}"%"
+    </select>
+
+    <select id="searchNews" resultType="News" parameterType="String">
+        select * from news where match (title,content) against (#{key} in natural language mode)
+    </select>
+<!--    <select id="selectAllAnswer" resultType="Answer">-->
+<!--        select * from answer-->
+<!--    </select>-->
+
+<!--    <select id="selectAnswerByQuestion" resultType="Answer">-->
+<!--        select * from answer where belong_to_question = #{belongToQuestion}-->
+<!--    </select>-->
+
+<!--    <select id="selectAnswerByName" resultType="Answer">-->
+<!--        select * from answer where belong_to_name = #{belongToName}-->
+<!--    </select>-->
+
+<!--    <select id="selectAnswerByID" resultType="Answer">-->
+<!--        select * from answer where id = #{id}-->
+<!--    </select>-->
+
+<!--    <insert id="addAnswer" parameterType="Answer">-->
+<!--        insert into answer (id,content,time,belong_to_question,belong_to_name) values (#{id},#{content},#{time},#{belongToQuestion},#{belongToName})-->
+<!--    </insert>-->
+
+<!--    <update id="updateAnswer" parameterType="Answer">-->
+<!--        update answer set id=#{id},content=#{content},time=#{time},belong_to_question=#{belongToQuestion},belong_to_name={belongToName} where id = #{id}-->
+<!--    </update>-->
+
+<!--    <delete id="deleteAnswer" parameterType="Answer">-->
+<!--        delete from answer where id = #{id}-->
+<!--    </delete>-->
+</mapper>
