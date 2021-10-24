@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lab.dao.TutorDao">
+
+    <select id="selectAllTutor" resultType="Tutor">
+        select * from tutor
+    </select>
+
+    <insert id="addTutor" parameterType="Tutor">
+        insert into tutor (name,professional_direction,research_direction,address,post_code,tel,mail,introduce,post) values (#{name},#{professionalDirection},#{researchDirection},#{address},#{postCode},#{tel},#{mail},#{introduce},#{post})
+    </insert>
+
+    <update id="updateTutor" parameterType="Tutor">
+        update tutor set id=#{id},name=#{name},professional_direction=#{professionalDirection},research_direction=#{researchDirection},address=#{address},post_code=#{postCode},tel=#{tel},mail=#{mail},introduce=#{introduce},post=#{post} where id = #{id}
+    </update>
+
+    <delete id="deleteTutor" parameterType="Tutor">
+        delete from tutor where id = #{id}
+    </delete>
+
+    <select id="selectPartTime" parameterType="String" resultType="PartTime">
+        select * from part_time where tutor = #{tutor}
+    </select>
+
+    <insert id="addPartTime" parameterType="PartTime">
+        insert into part_time (value,tutor) values (#{value},#{tutor})
+    </insert>
+
+    <update id="updatePartTime" parameterType="PartTime">
+        update part_time set id=#{id},value=#{value},tutor=#{tutor} where id = #{id}
+    </update>
+
+    <delete id="deletePartTime" parameterType="PartTime">
+        delete from part_time where id = #{id}
+    </delete>
+
+    <select id="selectHonor" parameterType="String" resultType="Honor">
+        select * from honor where tutor = #{tutor}
+    </select>
+
+    <insert id="addHonor" parameterType="Honor">
+        insert into honor (value,tutor) values (#{value},#{tutor})
+    </insert>
+
+    <update id="updateHonor" parameterType="Honor">
+        update honor set id=#{id},value=#{value},tutor=#{tutor}
+    </update>
+
+    <delete id="deleteHonor" parameterType="Honor">
+        delete from honor where id = #{id}
+    </delete>
+
+    <select id="selectTutorProjects" parameterType="String" resultType="TutorProject">
+        select * from tutor_projects where tutor = #{tutor}
+    </select>
+
+    <insert id="addTutorProject" parameterType="TutorProject">
+        insert into tutor_projects (value,tutor) values (#{value},#{tutor})
+    </insert>
+
+    <update id="updateTutorProject" parameterType="TutorProject">
+        update tutor_projects set id=#{id},value=#{value},tutor=#{tutor} where id = #{id}
+    </update>
+
+    <delete id="deleteTutorProject" parameterType="TutorProject">
+        delete from tutor_projects where id = #{id}
+    </delete>
+
+    <select id="selectPaper" parameterType="String" resultType="Paper">
+        select * from paper where tutor = #{tutor}
+    </select>
+
+    <insert id="addPaper" parameterType="Paper">
+        insert into paper (value,tutor) values (#{value},#{tutor})
+    </insert>
+
+    <update id="updatePaper" parameterType="Paper">
+        update paper set id=#{id},value=#{value},tutor=#{tutor} where id = #{id}
+    </update>
+
+    <delete id="deletePaper" parameterType="Paper">
+        delete from paper where id = #{id}
+    </delete>
+
+</mapper>
