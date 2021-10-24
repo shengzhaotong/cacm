@@ -11,5 +11,7 @@ import java.util.List;
 public interface AchievementsDao {
 
     List<Achievement> selectAllAchievements();
+    int addAchievement(Achievement achievement);
+    int deleteAchievement(Achievement achievement);
 
 }

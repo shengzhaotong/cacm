@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lab.dao.SilhouetteDao">
+
+    <select id="selectAllSilhouette" resultType="Silhouette">
+        select * from silhouette
+    </select>
+
+    <insert id="addSilhouette" parameterType="Silhouette">
+        insert into silhouette (link) values (#{link})
+    </insert>
+
+    <delete id="deleteSilhouette" parameterType="Silhouette">
+        delete from silhouette where id = #{id}
+    </delete>
+
+</mapper>

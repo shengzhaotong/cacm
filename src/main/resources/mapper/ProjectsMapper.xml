@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lab.dao.ProjectDao">
+
+    <select id="selectAllProjects" resultType="Project">
+        select * from projects
+    </select>
+
+    <insert id="addProject" parameterType="Project">
+        insert into projects (name,type,num,host) values (#{name},#{type},#{num},#{host})
+    </insert>
+
+    <select id="searchName" parameterType="String" resultType="String">
+        select name from projects where name like #{key}"%"
+    </select>
+
+    <select id="searchProjects" parameterType="String" resultType="Project">
+        select * from projects where match (name,type,host) against (#{key} in natural language mode)
+    </select>
+
+    <delete id="deleteProject" parameterType="Project">
+        delete from projects where id = #{id}
+    </delete>
+
+</mapper>

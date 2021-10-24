@@ -8,4 +8,12 @@
         select * from achievements
     </select>
 
+    <insert id="addAchievement" parameterType="Achievement">
+        insert into achievements (content) values (#{content})
+    </insert>
+
+    <delete id="deleteAchievement" parameterType="Achievement">
+        delete from achievements where id = #{id}
+    </delete>
+
 </mapper>

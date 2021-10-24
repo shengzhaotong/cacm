@@ -30,4 +30,8 @@ public class NewsService {
         return newsDao.searchNews(key);
     }
 
+    public int deleteNews (News news) {
+        return newsDao.deleteNews(news);
+    }
+
 }
