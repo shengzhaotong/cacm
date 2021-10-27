@@ -45,7 +45,7 @@
     </insert>
 
     <update id="updateHonor" parameterType="Honor">
-        update honor set id=#{id},value=#{value},tutor=#{tutor}
+        update honor set id=#{id},value=#{value},tutor=#{tutor} where id = #{id}
     </update>
 
     <delete id="deleteHonor" parameterType="Honor">
