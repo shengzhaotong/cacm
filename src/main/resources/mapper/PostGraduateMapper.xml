@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lab.dao.PostGraduateDao">
+
+    <select id="selectAllPostGraduate" resultType="PostGraduate">
+        select * from post_graduate
+    </select>
+
+    <insert id="insertPostGraduate" parameterType="PostGraduate">
+        insert into post_graduate (name,degree,research_direction,image,is_graduate) values (#{name},#{degree},#{researchDirection},#{image},#{isGraduate})
+    </insert>
+
+    <update id="updatePostGraduate" parameterType="PostGraduate">
+        update post_graduate set id=#{id},name=#{name},degree=#{degree},research_direction=#{researchDirection},image=#{image},is_graduate=#{isGraduate} where id = #{id}
+    </update>
+
+    <delete id="deletePostGraduate" parameterType="PostGraduate">
+        delete from post_graduate where id = #{id}
+    </delete>
+
+</mapper>
