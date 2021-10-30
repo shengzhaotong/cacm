@@ -21,6 +21,7 @@ public class Tutor {
     private String mail;
     private String introduce;
     private String post;
+    private String image;
     private List<PartTime> partTime;
     private List<Honor> honor;
     private List<TutorProject> projects;

@@ -19,6 +19,7 @@ public class Teacher {
     private String postCode;
     private String tel;
     private String researchDirection;
+    private String image;
     private List<Experience> experiences;
     private List<TutorProject> projects;
     private List<Paper> papers;
