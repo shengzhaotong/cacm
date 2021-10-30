@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lab.dao.MenuDao">
+
+    <select id="selectAllFirstMenu" resultType="FirstMenu">
+        select * from first_menu
+    </select>
+
+    <select id="selectSecondMenu" parameterType="String" resultType="SecondMenu">
+        select * from second_menu where first_menu = #{firstMenu}
+    </select>
+
+
+    <insert id="addFirstMenu" parameterType="FirstMenu">
+        insert into first_menu (name,link) values (#{name},#{link})
+    </insert>
+
+    <insert id="addSecondMenu" parameterType="SecondMenu">
+        insert into second_menu (name,link,first_menu) values (#{name},#{link},#{firstMenu})
+    </insert>
+
+
+    <update id="updateFirstMenu" parameterType="FirstMenu">
+        update first_menu set id=#{id},name=#{name},link=#{link} where id = #{id}
+    </update>
+
+    <update id="updateSecondMenu" parameterType="SecondMenu">
+        update second_menu set id=#{id},name=#{name},link=#{link},first_menu=#{firstMenu} where id = #{id}
+    </update>
+
+
+    <delete id="deleteFirstMenu" parameterType="FirstMenu">
+        delete from first_menu where id = #{id}
+    </delete>
+
+    <delete id="deleteSecondMenu" parameterType="SecondMenu">
+        delete from second_menu where id = #{id}
+    </delete>
+
+</mapper>

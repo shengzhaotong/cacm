@@ -25,10 +25,12 @@ public class TeacherService {
 
     public List<Teacher> selectAllTeacher () {
         List<Teacher> teachers = teacherDao.selectAllTeacher();
-        for (Teacher teacher : teachers) {
-            teacher.setExperiences(experienceService.selectExperience(teacher.getName(), true));
-            teacher.setPapers(tutorDao.selectPaper(teacher.getName()));
-            teacher.setProjects(tutorDao.selectTutorProjects(teacher.getName()));
+        if (teachers != null) {
+            for (Teacher teacher : teachers) {
+                teacher.setExperiences(experienceService.selectExperience(teacher.getName(), true));
+                teacher.setPapers(tutorDao.selectPaper(teacher.getName()));
+                teacher.setProjects(tutorDao.selectTutorProjects(teacher.getName()));
+            }
         }
         return teachers;
     }
