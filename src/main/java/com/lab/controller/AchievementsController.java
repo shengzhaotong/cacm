@@ -18,16 +18,25 @@ public class AchievementsController {
     @Autowired
     JsonUtil jsonUtil;
 
+    /**
+     * 获取所有研究成果
+     * */
     @GetMapping("/get_achievement")
     public String getAchievement () {
         return jsonUtil.getJson(achievementsService.selectAllAchievements());
     }
 
+    /**
+     * 增加研究成果
+     * */
     @PostMapping("/add_achievement")
     public int addAchievement (@RequestBody Achievement achievement) {
         return achievementsService.addAchievement(achievement);
     }
 
+    /**
+     * 删除研究成果
+     * */
     @PostMapping("/delete_achievement")
     public int deleteAchievement (@RequestBody Achievement achievement) {
         return achievementsService.deleteAchievement(achievement);
