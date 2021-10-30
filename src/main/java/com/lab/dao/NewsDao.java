@@ -12,7 +12,7 @@ public interface NewsDao {
 
     List<News> selectAllNews();
     int addNews(News news);
-    String searchTitle(String key);
+    List<String> searchTitle(String key);
     List<News> searchNews(String key);
     int deleteNews(News news);
 

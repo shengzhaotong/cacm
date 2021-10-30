@@ -22,7 +22,7 @@ public class NewsService {
         return newsDao.addNews(news);
     }
 
-    public String searchTitle (String key) {
+    public List<String> searchTitle (String key) {
         return newsDao.searchTitle(key);
     }
 

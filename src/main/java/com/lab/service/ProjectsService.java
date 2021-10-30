@@ -21,7 +21,7 @@ public class ProjectsService {
         return projectDao.addProject(project);
     }
 
-    public String searchName (String key) {
+    public List<String> searchName (String key) {
         return projectDao.searchName(key);
     }
 

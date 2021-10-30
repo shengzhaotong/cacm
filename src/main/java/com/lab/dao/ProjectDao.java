@@ -12,7 +12,7 @@ public interface ProjectDao {
 
     List<Project> selectAllProjects();
     int addProject(Project project);
-    String searchName(String key);
+    List<String> searchName(String key);
     List<Project> searchProjects(String key);
     int deleteProject(Project project);
 
