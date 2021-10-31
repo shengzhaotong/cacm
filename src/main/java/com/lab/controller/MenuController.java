@@ -1,5 +1,6 @@
 package com.lab.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lab.pojo.FirstMenu;
 import com.lab.pojo.SecondMenu;
 import com.lab.service.MenuService;
@@ -23,7 +24,7 @@ public class MenuController {
      * 获取所有一级菜单
      * */
     @GetMapping("/get_all_first_menu")
-    public String getAllFirstMenu () {
+    public String getAllFirstMenu () throws JsonProcessingException {
         return jsonUtil.getJson(menuService.selectAllFirstMenu());
     }
 

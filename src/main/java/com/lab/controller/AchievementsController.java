@@ -1,5 +1,6 @@
 package com.lab.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lab.pojo.Achievement;
 import com.lab.service.AchievementsService;
 import com.lab.utils.JsonUtil;
@@ -22,7 +23,7 @@ public class AchievementsController {
      * 获取所有研究成果
      * */
     @GetMapping("/get_achievement")
-    public String getAchievement () {
+    public String getAchievement () throws JsonProcessingException {
         return jsonUtil.getJson(achievementsService.selectAllAchievements());
     }
 

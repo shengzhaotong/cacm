@@ -11,27 +11,16 @@ import java.text.SimpleDateFormat;
 @Component
 public class JsonUtil {
 
-    public String getJson(Object object){
-
+    public String getJson(Object object) throws JsonProcessingException{
         return this.getJson(object,"yyyy-MM-dd HH:mm:ss");
-
     }
 
-    public String getJson(Object object,String dateFormat){
-
+    public String getJson(Object object,String dateFormat)throws JsonProcessingException{
         ObjectMapper objectMapper = new ObjectMapper();
-
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
         objectMapper.setDateFormat(simpleDateFormat);
-
-        try {
-            return objectMapper.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return objectMapper.writeValueAsString(object);
     }
 
 }

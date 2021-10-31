@@ -1,5 +1,6 @@
 package com.lab.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lab.pojo.News;
 import com.lab.service.NewsService;
 import com.lab.utils.JsonUtil;
@@ -22,7 +23,7 @@ public class NewsController {
      * 获取所有实验室新闻
      * */
     @GetMapping("/get_news")
-    public String getNews () {
+    public String getNews () throws JsonProcessingException {
         return jsonUtil.getJson(newsService.selectAllNews());
     }
 
@@ -31,7 +32,7 @@ public class NewsController {
      * 返回以关键字为开头的所有字符串
      * */
     @GetMapping("/search_title")
-    public String searchTitle (String key) {
+    public String searchTitle (String key) throws JsonProcessingException {
         return jsonUtil.getJson(newsService.searchTitle(key));
     }
 
@@ -43,7 +44,7 @@ public class NewsController {
      * 在MySQL的配置文件中增加 ： ngram_token_size=@{分词数量}
      * */
     @GetMapping("/search_news")
-    public String searchNews (String key) {
+    public String searchNews (String key) throws JsonProcessingException {
         return jsonUtil.getJson(newsService.searchNews(key));
     }
 

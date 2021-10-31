@@ -1,23 +1,41 @@
 package com.lab.Exception;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.io.IOException;
 
 
 @RestControllerAdvice
 public class WebExceptionControl {
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @ExceptionHandler(APIException.class)
     public String APIExceptionHandler(APIException e) {
+        logger.error(e.getMessage());
         return "当前用户访问量过大，请稍候重试";
     }
 
-    @ExceptionHandler(FileException.class)
-    public String FileExceptionHandler(FileException e) {
-        if ("未获取到文件输入流".equals(e.getMessage())) {
-            return "错误，未找到文件";
-        }
-        return "服务器发生异常，文件上传失败";
+    @ExceptionHandler(JsonProcessingException.class)
+    public String JsonExceptionHandler(JsonProcessingException e) {
+        logger.error(e.getMessage());
+        return e.getMessage();
+    }
+
+    @ExceptionHandler(IOException.class)
+    public String IOExceptionHandler(IOException e) {
+        logger.error(e.getMessage());
+        return e.getMessage();
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String Exception(Exception e) {
+        logger.error(e.getMessage());
+        return e.getMessage();
     }
 
 }

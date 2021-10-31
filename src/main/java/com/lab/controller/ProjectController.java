@@ -1,5 +1,6 @@
 package com.lab.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lab.pojo.Project;
 import com.lab.service.ProjectsService;
 import com.lab.utils.JsonUtil;
@@ -22,7 +23,7 @@ public class ProjectController {
      * 获取所有实验室科研项目
      * */
     @GetMapping("/get_all_projects")
-    public String getAllProjects () {
+    public String getAllProjects () throws JsonProcessingException {
         return jsonUtil.getJson(projectsService.selectAllProjects());
     }
 
@@ -30,7 +31,7 @@ public class ProjectController {
      * 增加一条科研项目
      * */
     @PostMapping("/add_project")
-    public int addProject (@RequestBody Project project) {
+    public int addProject (@RequestBody Project project) throws JsonProcessingException {
         return projectsService.addProject(project);
     }
 
@@ -39,7 +40,7 @@ public class ProjectController {
      * 返回所有满足条件的字符串
      * */
     @GetMapping("/search_name")
-    public String searchTitle (String key) {
+    public String searchTitle (String key) throws JsonProcessingException {
         return jsonUtil.getJson(projectsService.searchName(key));
     }
 
@@ -51,7 +52,7 @@ public class ProjectController {
      * 在MySQL的配置文件中增加 ： ngram_token_size=@{分词数量}
      * */
     @GetMapping("/search_project")
-    public String searchProject (String key) {
+    public String searchProject (String key) throws JsonProcessingException {
         return jsonUtil.getJson(projectsService.searchProjects(key));
     }
 
