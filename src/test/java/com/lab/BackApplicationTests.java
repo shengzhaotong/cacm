@@ -9,11 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.concurrent.TimeUnit;
 
 
 @SpringBootTest
 class BackApplicationTests {
+
 
     @Autowired
     Cache cache;
@@ -21,11 +21,8 @@ class BackApplicationTests {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Test
-    void contextLoads() {
-        cache.set("key","value");
-        cache.expire("key",10, TimeUnit.SECONDS);
-        System.out.println(cache.get("key"));
-        cache.delete("key");
+    void contextLoads() throws Exception{
+        cache.set("key","123");
         System.out.println(cache.get("key"));
     }
 
@@ -35,4 +32,5 @@ class BackApplicationTests {
         System.out.println(header);
         return "test";
     }
+
 }

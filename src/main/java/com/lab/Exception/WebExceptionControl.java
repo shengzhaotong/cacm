@@ -32,6 +32,12 @@ public class WebExceptionControl {
         return e.getMessage();
     }
 
+    @ExceptionHandler(IPException.class)
+    public String IPException(IPException e) {
+        logger.error(e.getMessage());
+        return "访问次数过于频繁，请稍候在试";
+    }
+
     @ExceptionHandler(Exception.class)
     public String Exception(Exception e) {
         logger.error(e.getMessage());
