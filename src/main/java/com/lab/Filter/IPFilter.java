@@ -27,7 +27,7 @@ public class IPFilter implements Filter {
     /**
      * 默认限制时间（单位：ms）3600000,3600(s),
      */
-    private static final long LIMITED_TIME_MILLIS = 10 * 1000;
+    private static final long LIMITED_TIME_MILLIS = 120 * 1000;
 
     /**
      * 用户连续访问最高阀值，超过该值则认定为恶意操作的IP，进行限制

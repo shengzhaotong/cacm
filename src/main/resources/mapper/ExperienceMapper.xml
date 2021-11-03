@@ -13,7 +13,7 @@
     </insert>
 
     <update id="updateExperience" parameterType="Experience">
-        update experience set id=#{id},belong_to=#{belongTo},is_teacher=#{isTeacher} where id = #{id}
+        update experience set belong_to=#{belongTo},is_teacher=#{isTeacher} where id = #{id}
     </update>
 
     <delete id="deleteExperience" parameterType="Experience">

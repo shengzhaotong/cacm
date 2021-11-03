@@ -13,7 +13,7 @@
     </insert>
 
     <update id="updatePostGraduate" parameterType="PostGraduate">
-        update post_graduate set id=#{id},name=#{name},degree=#{degree},research_direction=#{researchDirection},image=#{image},is_graduate=#{isGraduate} where id = #{id}
+        update post_graduate set name=#{name},degree=#{degree},research_direction=#{researchDirection},image=#{image},is_graduate=#{isGraduate} where id = #{id}
     </update>
 
     <delete id="deletePostGraduate" parameterType="PostGraduate">

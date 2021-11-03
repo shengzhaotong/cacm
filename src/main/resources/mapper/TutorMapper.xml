@@ -13,7 +13,7 @@
     </insert>
 
     <update id="updateTutor" parameterType="Tutor">
-        update tutor set id=#{id},name=#{name},professional_direction=#{professionalDirection},research_direction=#{researchDirection},address=#{address},post_code=#{postCode},tel=#{tel},mail=#{mail},introduce=#{introduce},post=#{post},image=#{image} where id = #{id}
+        update tutor set name=#{name},professional_direction=#{professionalDirection},research_direction=#{researchDirection},address=#{address},post_code=#{postCode},tel=#{tel},mail=#{mail},introduce=#{introduce},post=#{post},image=#{image} where id = #{id}
     </update>
 
     <delete id="deleteTutor" parameterType="Tutor">
@@ -33,7 +33,7 @@
     </insert>
 
     <update id="updatePartTime" parameterType="PartTime">
-        update part_time set id=#{id},value=#{value},tutor=#{tutor} where id = #{id}
+        update part_time set value=#{value},tutor=#{tutor} where id = #{id}
     </update>
 
     <delete id="deletePartTime" parameterType="PartTime">
@@ -49,7 +49,7 @@
     </insert>
 
     <update id="updateHonor" parameterType="Honor">
-        update honor set id=#{id},value=#{value},tutor=#{tutor} where id = #{id}
+        update honor set value=#{value},tutor=#{tutor} where id = #{id}
     </update>
 
     <delete id="deleteHonor" parameterType="Honor">
@@ -65,7 +65,7 @@
     </insert>
 
     <update id="updateTutorProject" parameterType="TutorProject">
-        update tutor_projects set id=#{id},value=#{value},tutor=#{tutor} where id = #{id}
+        update tutor_projects set value=#{value},tutor=#{tutor} where id = #{id}
     </update>
 
     <delete id="deleteTutorProject" parameterType="TutorProject">
@@ -81,7 +81,7 @@
     </insert>
 
     <update id="updatePaper" parameterType="Paper">
-        update paper set id=#{id},value=#{value},tutor=#{tutor} where id = #{id}
+        update paper set value=#{value},tutor=#{tutor} where id = #{id}
     </update>
 
     <delete id="deletePaper" parameterType="Paper">

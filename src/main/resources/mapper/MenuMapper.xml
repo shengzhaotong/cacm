@@ -23,11 +23,11 @@
 
 
     <update id="updateFirstMenu" parameterType="FirstMenu">
-        update first_menu set id=#{id},name=#{name},link=#{link} where id = #{id}
+        update first_menu set name=#{name},link=#{link} where id = #{id}
     </update>
 
     <update id="updateSecondMenu" parameterType="SecondMenu">
-        update second_menu set id=#{id},name=#{name},link=#{link},first_menu=#{firstMenu} where id = #{id}
+        update second_menu set name=#{name},link=#{link},first_menu=#{firstMenu} where id = #{id}
     </update>
 
 

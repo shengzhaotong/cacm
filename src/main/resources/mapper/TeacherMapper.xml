@@ -13,7 +13,7 @@
     </insert>
 
     <update id="updateTeacher" parameterType="Teacher">
-        update teacher set id=#{id},name=#{name},post=#{post},mail=#{mail},address=#{address},post_code=#{postCode},tel=#{tel},research_direction=#{researchDirection},image=#{image} where id = #{id}
+        update teacher set name=#{name},post=#{post},mail=#{mail},address=#{address},post_code=#{postCode},tel=#{tel},research_direction=#{researchDirection},image=#{image} where id = #{id}
     </update>
 
     <delete id="deleteTeacher" parameterType="Teacher">
