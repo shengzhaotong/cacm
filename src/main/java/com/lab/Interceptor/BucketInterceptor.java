@@ -2,7 +2,10 @@ package com.lab.Interceptor;
 
 import com.lab.Annotation.BucketAnnotation;
 import com.lab.Exception.APIException;
+import com.lab.Exception.IllegalRequestException;
 import com.lab.utils.BucketUtil;
+import com.lab.utils.IPUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -10,14 +13,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.lang.reflect.Method;
 
 @Component
 public class BucketInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    IPUtil ipUtil;
+
     // 预处理回调方法，在接口调用之前使用  true代表放行  false代表不放行
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+
+        if (!(isNotIllegalRequest(request))) {
+            throw new IllegalRequestException("捕获了一个非法请求："+ipUtil.getRemoteIpAddr(request));
+        }
 
         if (!(handler instanceof HandlerMethod)) {
             return true;
@@ -47,6 +58,11 @@ public class BucketInterceptor implements HandlerInterceptor {
     // 整个请求完成后，在视图渲染前使用
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+    }
+
+    private boolean isNotIllegalRequest (HttpServletRequest request) {
+        String requestStr = request.getHeader("referer");
+        return requestStr != null && requestStr.startsWith(request.getScheme() + "://" + request.getServerName());
     }
 
 }

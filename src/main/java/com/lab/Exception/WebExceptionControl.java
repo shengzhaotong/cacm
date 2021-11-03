@@ -33,9 +33,21 @@ public class WebExceptionControl {
     }
 
     @ExceptionHandler(IPException.class)
-    public String IPException(IPException e) {
+    public String IPExceptionHandler(IPException e) {
         logger.error(e.getMessage());
         return "访问次数过于频繁，请稍候在试";
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public String IllegalStateExceptionHandler(IllegalStateException e) {
+        logger.error(e.getMessage());
+        return e.getMessage();
+    }
+
+    @ExceptionHandler(IllegalRequestException.class)
+    public String IllegalRequestExceptionHandler(IllegalRequestException e) {
+        logger.error(e.getMessage());
+        return "检测到恶意行为，请求终止";
     }
 
     @ExceptionHandler(Exception.class)
