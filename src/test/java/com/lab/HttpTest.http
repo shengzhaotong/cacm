@@ -1,5 +1,0 @@
-GET http://localhost:8888/test/
-Accept: application/json
-
-###
-
