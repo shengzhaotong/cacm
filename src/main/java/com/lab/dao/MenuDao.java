@@ -12,7 +12,7 @@ import java.util.List;
 public interface MenuDao {
 
     List<FirstMenu> selectAllFirstMenu();
-    List<SecondMenu> selectSecondMenu(String firstMenu);
+    List<SecondMenu> selectSecondMenu(long firstMenu);
 
     int addFirstMenu(FirstMenu firstMenu);
     int addSecondMenu(SecondMenu secondMenu);

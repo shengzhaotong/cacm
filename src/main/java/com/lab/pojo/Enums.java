@@ -1,18 +1,17 @@
 package com.lab.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class FirstMenu {
+@AllArgsConstructor
+@TableName("list")
+public class Enums {
 
-    private long id;
+    private int id;
     private String link;
-    private List<SecondMenu> secondMenus;
 
 }

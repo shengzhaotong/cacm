@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 public class SecondMenu {
 
     private int id;
-    private String name;
     private String link;
-    private String firstMenu;
+    private long firstMenu;
 
 }
