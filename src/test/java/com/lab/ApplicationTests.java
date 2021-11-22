@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
-class BackApplicationTests {
+class ApplicationTests {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
