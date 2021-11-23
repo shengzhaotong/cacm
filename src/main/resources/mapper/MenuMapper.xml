@@ -12,6 +12,12 @@
         select * from second_menu where first_menu = #{firstMenu}
     </select>
 
+    <select id="selectSecondMenuForList" resultType="SecondMenu" parameterType="java.util.List">
+        select * from second_menu where first_menu in
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >
+            #{item.id}
+        </foreach>
+    </select>
 
     <insert id="addFirstMenu" parameterType="FirstMenu">
         insert into first_menu (id,link) values (#{id},#{link})
@@ -19,6 +25,18 @@
 
     <insert id="addSecondMenu" parameterType="SecondMenu">
         insert into second_menu (link,first_menu) values (#{link},#{firstMenu})
+    </insert>
+
+    <insert id="addSecondMenuForList" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into second_menu
+        (link,first_menu)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.link},
+            #{item.firstMenu}
+            )
+        </foreach>
     </insert>
 
 
@@ -31,12 +49,27 @@
     </update>
 
 
+    <update id="updateSecondMenuForList" parameterType="java.util.List" >
+        <foreach collection="list" item="item" index="index" separator=";">
+            update second_menu set link=#{item.link},first_menu=#{item.firstMenu} where id = #{item.id}
+        </foreach>
+    </update>
+
+
     <delete id="deleteFirstMenu" parameterType="FirstMenu">
         delete from first_menu where id = #{id}
     </delete>
 
     <delete id="deleteSecondMenu" parameterType="SecondMenu">
         delete from second_menu where id = #{id}
+    </delete>
+
+    <delete id="deleteSecondMenuForList" parameterType="java.util.List">
+        delete from second_menu
+        where id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item.id}
+        </foreach>
     </delete>
 
 </mapper>

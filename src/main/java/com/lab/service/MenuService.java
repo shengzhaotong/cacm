@@ -60,9 +60,7 @@ public class MenuService {
         int num = 0;
         List<SecondMenu> secondMenus = firstMenu.getSecondMenus();
         if (secondMenus != null) {
-            for (SecondMenu secondMenu : secondMenus) {
-                num += menuDao.updateSecondMenu(secondMenu);
-            }
+            num += menuDao.updateSecondMenuForList(secondMenus);
         }
         num += menuDao.updateFirstMenu(firstMenu);
         return num;
@@ -77,9 +75,7 @@ public class MenuService {
         int num = 0;
         List<SecondMenu> secondMenus = firstMenu.getSecondMenus();
         if (secondMenus != null) {
-            for (SecondMenu secondMenu : secondMenus) {
-                num += menuDao.deleteSecondMenu(secondMenu);
-            }
+            num += menuDao.updateSecondMenuForList(secondMenus);
         }
         num += menuDao.deleteFirstMenu(firstMenu);
         return num;
