@@ -56,8 +56,8 @@ public class MenuService {
                 long textId = idWorker.nextId();
                 secondMenu.setFirstMenu(id);
                 Names names1 = secondMenu.getNames();
-                names1.setId(textID);
-                firstMenu.setTextId(textID);
+                names1.setId(textId);
+                secondMenu.setTextId(textId);
                 num += namesDao.insert(names1);
                 num += menuDao.addSecondMenu(secondMenu);
             }

@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 24/11/2021 12:32:37
+ Date: 24/11/2021 19:04:31
 */
 
 SET NAMES utf8mb4;
@@ -53,9 +53,9 @@ CREATE TABLE `experience`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `first_menu`;
 CREATE TABLE `first_menu`  (
-  `id` int(0) NOT NULL,
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `link` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `text_id` int(0) NOT NULL,
+  `text_id` bigint(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -90,11 +90,15 @@ CREATE TABLE `list`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of list
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for names
 -- ----------------------------
 DROP TABLE IF EXISTS `names`;
 CREATE TABLE `names`  (
-  `id` int(0) NOT NULL,
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `zh` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `en` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -197,8 +201,8 @@ DROP TABLE IF EXISTS `second_menu`;
 CREATE TABLE `second_menu`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `link` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `first_menu` int(0) NOT NULL,
-  `text_id` int(0) NOT NULL,
+  `first_menu` bigint(0) NOT NULL,
+  `text_id` bigint(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `index`(`first_menu`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
