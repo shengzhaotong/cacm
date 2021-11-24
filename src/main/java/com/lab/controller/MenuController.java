@@ -47,7 +47,6 @@ public class MenuController {
                 }
             } else if ("en".equals(language)) {
                 for (FirstMenu firstMenu : firstMenus) {
-                    System.out.println(firstMenu.getTextId());
                     String name = namesDao.selectEnByID(firstMenu.getTextId());
                     firstMenu.setText(name);
                     List<SecondMenu> secondMenus = firstMenu.getSecondMenus();
