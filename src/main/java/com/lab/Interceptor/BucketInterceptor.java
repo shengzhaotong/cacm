@@ -26,9 +26,9 @@ public class BucketInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
-//        if (!(isNotIllegalRequest(request))) {
-//            throw new IllegalRequestException("捕获了一个非法请求："+ipUtil.getRemoteIpAddr(request));
-//        }
+        if (!(isNotIllegalRequest(request))) {
+            throw new IllegalRequestException("捕获了一个非法请求："+ipUtil.getRemoteIpAddr(request));
+        }
 
         if (!(handler instanceof HandlerMethod)) {
             return true;
