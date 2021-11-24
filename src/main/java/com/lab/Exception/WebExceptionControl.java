@@ -50,6 +50,12 @@ public class WebExceptionControl {
         return "检测到恶意行为，请求终止";
     }
 
+    @ExceptionHandler(RequestParameterException.class)
+    public String RequestParameterExceptionHandler(RequestParameterException e) {
+        logger.error(e.getMessage());
+        return e.getMessage();
+    }
+
     @ExceptionHandler(Exception.class)
     public String Exception(Exception e) {
         logger.error(e.getMessage());

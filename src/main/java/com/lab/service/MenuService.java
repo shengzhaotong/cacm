@@ -1,7 +1,9 @@
 package com.lab.service;
 
 import com.lab.dao.MenuDao;
+import com.lab.dao.NamesDao;
 import com.lab.pojo.FirstMenu;
+import com.lab.pojo.Names;
 import com.lab.pojo.SecondMenu;
 import com.lab.utils.SnowflakeIdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ import java.util.List;
 
 @Service
 public class MenuService {
+
+    @Autowired
+    NamesDao namesDao;
 
     @Autowired
     SnowflakeIdWorker idWorker;
@@ -38,12 +43,22 @@ public class MenuService {
     @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout=36000,rollbackFor=Exception.class)
     public int addFirstMenu (FirstMenu firstMenu) {
         long id = idWorker.nextId();
+        long textID = idWorker.nextId();
         firstMenu.setId(id);
+        Names names = firstMenu.getNames();
+        names.setId(textID);
+        firstMenu.setTextId(textID);
         int num = 0;
+        num += namesDao.insert(names);
         List<SecondMenu> secondMenus = firstMenu.getSecondMenus();
         if (secondMenus != null) {
             for (SecondMenu secondMenu : secondMenus) {
+                long textId = idWorker.nextId();
                 secondMenu.setFirstMenu(id);
+                Names names1 = secondMenu.getNames();
+                names1.setId(textID);
+                firstMenu.setTextId(textID);
+                num += namesDao.insert(names1);
                 num += menuDao.addSecondMenu(secondMenu);
             }
         }

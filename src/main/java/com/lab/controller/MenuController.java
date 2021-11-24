@@ -1,18 +1,22 @@
 package com.lab.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.lab.Exception.RequestParameterException;
+import com.lab.dao.NamesDao;
 import com.lab.pojo.FirstMenu;
 import com.lab.pojo.SecondMenu;
 import com.lab.service.MenuService;
 import com.lab.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class MenuController {
+
+    @Autowired
+    NamesDao namesDao;
 
     @Autowired
     MenuService menuService;
@@ -24,8 +28,42 @@ public class MenuController {
      * 获取所有一级菜单
      * */
     @GetMapping("/get_all_first_menu")
-    public String getAllFirstMenu () throws JsonProcessingException {
-        return jsonUtil.getJson(menuService.selectAllFirstMenu());
+    public String getAllFirstMenu (@RequestParam String language) throws JsonProcessingException {
+
+        List<FirstMenu> firstMenus = menuService.selectAllFirstMenu();
+
+        if (firstMenus != null) {
+            if ("zh".equals(language)) {
+                for (FirstMenu firstMenu : firstMenus) {
+                    String name = namesDao.selectZhByID(firstMenu.getTextId());
+                    firstMenu.setText(name);
+                    List<SecondMenu> secondMenus = firstMenu.getSecondMenus();
+                    if (secondMenus != null) {
+                        for (SecondMenu secondMenu : secondMenus) {
+                            String text = namesDao.selectZhByID(secondMenu.getTextId());
+                            secondMenu.setText(text);
+                        }
+                    }
+                }
+            } else if ("en".equals(language)) {
+                for (FirstMenu firstMenu : firstMenus) {
+                    System.out.println(firstMenu.getTextId());
+                    String name = namesDao.selectEnByID(firstMenu.getTextId());
+                    firstMenu.setText(name);
+                    List<SecondMenu> secondMenus = firstMenu.getSecondMenus();
+                    if (secondMenus != null) {
+                        for (SecondMenu secondMenu : secondMenus) {
+                            String text = namesDao.selectEnByID(secondMenu.getTextId());
+                            secondMenu.setText(text);
+                        }
+                    }
+                }
+            } else {
+                throw new RequestParameterException("请求参数格式不正确");
+            }
+        }
+
+        return jsonUtil.getJson(firstMenus);
     }
 
     /**

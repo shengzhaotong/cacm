@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 30/10/2021 18:20:01
+ Date: 24/11/2021 12:32:37
 */
 
 SET NAMES utf8mb4;
@@ -40,7 +40,8 @@ CREATE TABLE `experience`  (
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `belong_to` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `is_teacher` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `index`(`belong_to`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -52,11 +53,11 @@ CREATE TABLE `experience`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `first_menu`;
 CREATE TABLE `first_menu`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `id` int(0) NOT NULL,
   `link` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `text_id` int(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of first_menu
@@ -70,11 +71,37 @@ CREATE TABLE `honor`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `tutor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `index`(`tutor`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of honor
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for list
+-- ----------------------------
+DROP TABLE IF EXISTS `list`;
+CREATE TABLE `list`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `link` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for names
+-- ----------------------------
+DROP TABLE IF EXISTS `names`;
+CREATE TABLE `names`  (
+  `id` int(0) NOT NULL,
+  `zh` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `en` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of names
 -- ----------------------------
 
 -- ----------------------------
@@ -87,6 +114,7 @@ CREATE TABLE `news`  (
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
+  INDEX `title`(`title`) USING BTREE,
   FULLTEXT INDEX `index`(`title`, `content`) WITH PARSER `ngram`
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -102,7 +130,8 @@ CREATE TABLE `paper`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `tutor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `index`(`tutor`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -117,7 +146,8 @@ CREATE TABLE `part_time`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `tutor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `index`(`tutor`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -166,10 +196,11 @@ CREATE TABLE `projects`  (
 DROP TABLE IF EXISTS `second_menu`;
 CREATE TABLE `second_menu`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `link` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `first_menu` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  `first_menu` int(0) NOT NULL,
+  `text_id` int(0) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `index`(`first_menu`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -227,7 +258,8 @@ CREATE TABLE `tutor`  (
   `introduce` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `post` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `index`(`name`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -242,7 +274,8 @@ CREATE TABLE `tutor_projects`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `tutor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `index`(`tutor`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
