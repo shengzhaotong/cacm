@@ -37,7 +37,7 @@ public class IPFilter implements Filter {
     /**
      * 用户访问最小安全时间，在该时间内如果访问次数大于阀值，则记录为恶意IP，否则视为正常访问
      */
-    private static final int MIN_SAFE_TIME = 5000;
+    private static final int MIN_SAFE_TIME = 1500;
 
     private FilterConfig config;
 
